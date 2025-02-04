@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git url: 'https://github.com/robertmvungu/Jenkinsfile/new/main', branch: 'main'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building project...'
+                sh jenkins-cli build my-project  // Replace with actual build command
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh './run-tests.sh'  // Replace with actual test script
+            }
+        }
+    }
+}
